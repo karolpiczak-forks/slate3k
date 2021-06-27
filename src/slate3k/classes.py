@@ -55,7 +55,7 @@ class PDF(list):
         self.parser = PDFParser(file)
         self.laparams = LAParams(char_margin=char_margin, line_margin=line_margin, word_margin=word_margin)
 
-        if PYTHON_3:
+        if not PYTHON_3:
             self.doc = PDFDocument()
             self.parser.set_document(self.doc)
             self.doc.set_parser(self.parser)
@@ -69,7 +69,7 @@ class PDF(list):
             self.interpreter = PDFPageInterpreter(
                self.resmgr, self.device)
 
-            if PYTHON_3:
+            if not PYTHON_3:
                 page_generator = self.doc.get_pages()
             else:
                 page_generator = PDFPage.create_pages(self.doc)
